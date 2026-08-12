@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elizabeth Njuguna — Full-Stack Developer</title>
+<meta name="description" content="Elizabeth Njuguna, full-stack developer from Nairobi, Kenya. Building fast, accessible, scalable web experiences.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B1220;
+    --surface: #121B2E;
+    --surface-2: #17233A;
+    --border: #263353;
+    --text: #EDEEF2;
+    --text-muted: #8B93A7;
+    --accent: #4FD1C5;
+    --accent-dim: #2E5F5A;
+    --amber: #F2B84B;
+    --radius: 10px;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(79,209,197,0.08), transparent 40%),
+      radial-gradient(circle at 85% 0%, rgba(242,184,75,0.05), transparent 35%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  ::selection{ background: var(--accent); color:#04201d; }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:16px;
+  }
+  .eyebrow::before{ content:"$"; color: var(--text-muted); }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background: rgba(11,18,32,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .logo{
+    font-family: var(--font-mono);
+    font-weight:600;
+    font-size:1.1rem;
+    color: var(--text);
+  }
+  .logo span{ color: var(--accent); }
+  .nav-links{ display:flex; gap:32px; }
+  .nav-links a{
+    font-size:0.92rem;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover{ color: var(--text); }
+  .nav-cta{
+    font-family: var(--font-mono);
+    font-size:0.8rem;
+    padding:8px 14px;
+    border:1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text-muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .dot{
+    width:6px; height:6px; border-radius:50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(79,209,197,0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(79,209,197,0.5); }
+    70%{ box-shadow: 0 0 0 6px rgba(79,209,197,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(79,209,197,0); }
+  }
+  .menu-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 80px;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family: var(--font-mono);
+    font-size:0.78rem;
+    color: var(--amber);
+    background: rgba(242,184,75,0.08);
+    border:1px solid rgba(242,184,75,0.25);
+    padding:6px 12px;
+    border-radius:20px;
+    margin-bottom:28px;
+  }
+  h1{
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5.5vw, 4rem);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-0.02em;
+    margin-bottom:20px;
+  }
+  h1 .accent{ color: var(--accent); }
+  .hero-sub{
+    font-size:1.1rem;
+    color: var(--text-muted);
+    max-width:46ch;
+    margin-bottom:36px;
+  }
+  .cta-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .btn{
+    font-family: var(--font-mono);
+    font-size:0.88rem;
+    padding:13px 22px;
+    border-radius: 8px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  }
+  .btn-primary{
+    background: var(--accent);
+    color: #04201d;
+    font-weight:600;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); background:#63dcd1; }
+  .btn-ghost{
+    border:1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-ghost:hover{ border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* Terminal card */
+  .terminal{
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius: var(--radius);
+    overflow:hidden;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+  }
+  .terminal-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:12px 16px;
+    background: var(--surface-2);
+    border-bottom:1px solid var(--border);
+  }
+  .terminal-bar span{
+    width:10px; height:10px; border-radius:50%;
+    background: #3a4665;
+  }
+  .terminal-bar .t-label{
+    font-family: var(--font-mono);
+    font-size:0.72rem;
+    color: var(--text-muted);
+    margin-left:8px;
+  }
+  .terminal-body{
+    padding:24px;
+    font-family: var(--font-mono);
+    font-size:0.9rem;
+    color: var(--text-muted);
+    min-height:200px;
+  }
+  .terminal-body .line{ margin-bottom:14px; }
+  .terminal-body .prompt{ color: var(--accent); }
+  .terminal-body .out{ color: var(--text); }
+  .cursor{
+    display:inline-block;
+    width:8px; height:1.1em;
+    background: var(--accent);
+    margin-left:2px;
+    vertical-align:text-bottom;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:88px 0; border-top:1px solid var(--border); }
+  .section-head{ max-width:640px; margin-bottom:48px; }
+  .section-head h2{
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin-bottom:14px;
+  }
+  .section-head p{ color: var(--text-muted); font-size:1.02rem; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap:56px;
+    align-items:start;
+  }
+  .about-grid p{ color: var(--text-muted); margin-bottom:16px; font-size:1.02rem; }
+  .about-grid p strong{ color: var(--text); font-weight:500; }
+  .stats{ display:flex; flex-direction:column; gap:24px; }
+  .stat{
+    border-left:2px solid var(--accent);
+    padding-left:18px;
+  }
+  .stat .num{
+    font-family: var(--font-display);
+    font-size:2.2rem;
+    font-weight:700;
+    color: var(--text);
+    line-height:1;
+  }
+  .stat .label{
+    font-family: var(--font-mono);
+    font-size:0.78rem;
+    color: var(--text-muted);
+    margin-top:6px;
+  }
+  .location-tag{
+    font-family: var(--font-mono);
+    font-size:0.82rem;
+    color: var(--text-muted);
+    margin-top:8px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .location-tag::before{ content:"📍"; font-size:0.9rem; }
+
+  /* ---------- PROJECTS ---------- */
+  .projects-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:24px;
+  }
+  .project-card{
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius: var(--radius);
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .project-card:hover{
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+  .project-num{
+    font-family: var(--font-mono);
+    font-size:0.75rem;
+    color: var(--accent);
+    margin-bottom:16px;
+  }
+  .project-card h3{
+    font-family: var(--font-display);
+    font-size:1.25rem;
+    font-weight:600;
+    margin-bottom:12px;
+  }
+  .project-card p{
+    color: var(--text-muted);
+    font-size:0.92rem;
+    margin-bottom:20px;
+    flex-grow:1;
+  }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-family: var(--font-mono);
+    font-size:0.72rem;
+    color: var(--accent);
+    background: rgba(79,209,197,0.08);
+    border:1px solid var(--accent-dim);
+    padding:4px 9px;
+    border-radius:5px;
+  }
+  .tag.warm{
+    color: var(--amber);
+    background: rgba(242,184,75,0.08);
+    border-color: rgba(242,184,75,0.3);
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-list{
+    display:flex; flex-wrap:wrap; gap:12px;
+  }
+  .skill-chip{
+    font-family: var(--font-mono);
+    font-size:0.88rem;
+    color: var(--text);
+    background: var(--surface);
+    border:1px solid var(--border);
+    padding:10px 16px;
+    border-radius:6px;
+    display:flex; align-items:center; gap:8px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .skill-chip:hover{ border-color: var(--accent); color: var(--accent); }
+  .skill-chip::before{ content:"--"; color: var(--text-muted); }
+
+  /* ---------- CONTACT ---------- */
+  .contact-box{
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius: var(--radius);
+    padding:56px;
+    text-align:center;
+  }
+  .contact-box h2{
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight:600;
+    margin-bottom:16px;
+  }
+  .contact-box > p{
+    color: var(--text-muted);
+    max-width:52ch;
+    margin:0 auto 32px;
+  }
+  .contact-actions{
+    display:flex; justify-content:center; gap:16px; flex-wrap:wrap;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--border);
+    padding:32px 0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .footer-note{
+    font-family: var(--font-mono);
+    font-size:0.78rem;
+    color: var(--text-muted);
+  }
+  .footer-links{ display:flex; gap:24px; }
+  .footer-links a{
+    font-size:0.85rem;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+  .footer-links a:hover{ color: var(--accent); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .nav-links{ display:none; }
+    .hero{ grid-template-columns:1fr; padding-top:64px; }
+    .about-grid{ grid-template-columns:1fr; }
+    .stats{ flex-direction:row; flex-wrap:wrap; }
+    .projects-grid{ grid-template-columns:1fr; }
+    .contact-box{ padding:36px 24px; }
+    section{ padding:64px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">EN<span>.</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta"><span class="dot"></span> Available for work</a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero wrap" style="border-top:none;">
+    <div>
+      <div class="badge">● Available for freelance &amp; full-time roles</div>
+      <h1>Elizabeth <span class="accent">Njuguna</span></h1>
+      <p class="hero-sub">Full-stack developer from Kenya crafting fast, accessible, and scalable web experiences for the modern internet.</p>
+      <div class="cta-row">
+        <a href="#projects" class="btn btn-primary">View my work</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="terminal" aria-hidden="true">
+      <div class="terminal-bar">
+        <span></span><span></span><span></span>
+        <span class="t-label">elizabeth@portfolio — zsh</span>
+      </div>
+      <div class="terminal-body">
+        <div class="line"><span class="prompt">$</span> whoami</div>
+        <div class="line out">Elizabeth Njuguna — full-stack developer</div>
+        <div class="line"><span class="prompt">$</span> cat stack.txt</div>
+        <div class="line out">React · Next.js · Node.js · Python · Flask</div>
+        <div class="line"><span class="prompt">$</span> location --show</div>
+        <div class="line out">Nairobi, Kenya · remote friendly</div>
+        <div class="line"><span class="prompt">$</span> <span class="cursor"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">cat about.md</div>
+        <h2>Building software that solves real problems.</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>I'm <strong>Elizabeth Njuguna</strong>, a full-stack developer based in Nairobi, Kenya. I design and build clean, performant web applications that help businesses and communities grow.</p>
+          <p>From fintech dashboards and e-commerce platforms to education tools and developer communities, I enjoy working across the stack and turning complex ideas into intuitive products.</p>
+          <div class="location-tag">Nairobi, Kenya · Remote friendly</div>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="num">3+</div>
+            <div class="label">YEARS EXPERIENCE</div>
+          </div>
+          <div class="stat">
+            <div class="num">100%</div>
+            <div class="label">COMMITMENT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">ls projects/</div>
+        <h2>Selected work</h2>
+        <p>A mix of client work, open-source contributions, and side experiments.</p>
+      </div>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="project-num">01 / MARKETPLACE</div>
+          <h3>Innovation Marketplace</h3>
+          <p>A platform that empowers Moringa School students to showcase, monetize, and scale their final capstone projects — letting visitors discover talent, purchase innovative solutions, and buy Moringa-branded merchandise.</p>
+          <div class="tag-row">
+            <span class="tag">Next.js</span>
+            <span class="tag">React</span>
+            <span class="tag">Tailwind</span>
+            <span class="tag warm">Firebase</span>
+            <span class="tag warm">Flask</span>
+            <span class="tag warm">SQLite</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-num">02 / CLI TOOL</div>
+          <h3>Maji Mazuri App</h3>
+          <p>A CLI-based cocktail bar management app that helps owners track cocktails, customers, and orders through a clean terminal interface backed by a Flask REST API.</p>
+          <div class="tag-row">
+            <span class="tag warm">Python</span>
+            <span class="tag warm">Flask</span>
+            <span class="tag warm">SQLAlchemy</span>
+            <span class="tag warm">SQLite</span>
+            <span class="tag warm">JWT</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-num">03 / TRAVEL</div>
+          <h3>KimoshTours</h3>
+          <p>A tours and travel website for a Kenyan company, showcasing destinations, packages, and experiences to help travelers plan their next trip.</p>
+          <div class="tag-row">
+            <span class="tag">Next.js</span>
+            <span class="tag">React</span>
+            <span class="tag">Tailwind</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">cat skills.json</div>
+        <h2>Skills &amp; technologies</h2>
+        <p>The languages, frameworks, and tools I use to bring ideas to life.</p>
+      </div>
+      <div class="skills-list">
+        <span class="skill-chip">react-nextjs</span>
+        <span class="skill-chip">typescript</span>
+        <span class="skill-chip">node</span>
+        <span class="skill-chip">python</span>
+        <span class="skill-chip">postgresql</span>
+        <span class="skill-chip">flask</span>
+        <span class="skill-chip">firebase</span>
+        <span class="skill-chip">tailwind-css</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-box">
+        <div class="eyebrow" style="justify-content:center;">./contact.sh</div>
+        <h2>Let's talk</h2>
+        <p>I'm currently open to new opportunities, freelance projects, and interesting collaborations. Send me a message and let's build something great together.</p>
+        <div class="contact-actions">
+          <a href="mailto:elizabethnjuguna217@gmail.com" class="btn btn-primary">elizabethnjuguna217@gmail.com</a>
+          <a href="https://www.linkedin.com/in/elizabeth-njuguna-432951371/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-note">© 2026 Elizabeth Njuguna. Built with React, Tailwind, and passion.</div>
+    <div class="footer-links">
+      <a href="https://github.com/Elizabeth-NN" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/elizabeth-njuguna-432951371/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:elizabethnjuguna217@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
