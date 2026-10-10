@@ -121,7 +121,17 @@
     70%{ box-shadow: 0 0 0 6px rgba(79,209,197,0); }
     100%{ box-shadow: 0 0 0 0 rgba(79,209,197,0); }
   }
-  .menu-toggle{ display:none; }
+  .menu-toggle{
+    display:none;
+    font-family:var(--font-mono);
+    font-size:0.8rem;
+    color:var(--accent);
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:9px 12px;
+    cursor:pointer;
+  }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -325,6 +335,25 @@
     border-color: rgba(242,184,75,0.3);
   }
 
+  .project-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-top:22px;
+    padding-top:16px;
+    border-top:1px solid var(--border);
+  }
+  .project-links a{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    color:var(--accent);
+  }
+  .project-links a:hover{ color:var(--amber); }
+  .project-links a:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:4px;
+  }
+
   /* ---------- SKILLS ---------- */
   .skills-list{
     display:flex; flex-wrap:wrap; gap:12px;
@@ -389,7 +418,24 @@
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 860px){
-    .nav-links{ display:none; }
+    nav.wrap{ gap:12px; }
+    .nav-cta{ display:none; }
+    .menu-toggle{ display:inline-flex; align-items:center; }
+    .nav-links{
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
+      flex-direction:column;
+      gap:0;
+      padding:8px 24px 16px;
+      background:var(--bg);
+      border-bottom:1px solid var(--border);
+      box-shadow:0 12px 20px rgba(0,0,0,0.2);
+    }
+    .nav-links.is-open{ display:flex; }
+    .nav-links a{ padding:12px 0; }
     .hero{ grid-template-columns:1fr; padding-top:64px; }
     .about-grid{ grid-template-columns:1fr; }
     .stats{ flex-direction:row; flex-wrap:wrap; }
@@ -404,12 +450,18 @@
 <header>
   <nav class="wrap">
     <div class="logo">EN<span>.</span></div>
-    <div class="nav-links">
+    <div class="nav-links" id="primary-navigation">
       <a href="#about">About</a>
       <a href="#projects">Work</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </div>
+    <button class="menu-toggle" type="button"
+      aria-controls="primary-navigation"
+      aria-expanded="false"
+      aria-label="Open navigation">
+      Menu <span aria-hidden="true">☰</span>
+    </button>
     <a href="#contact" class="nav-cta"><span class="dot"></span> Available for work</a>
   </nav>
 </header>
@@ -480,7 +532,6 @@
         <p>A mix of client work, open-source contributions, and side experiments.</p>
       </div>
       <div class="projects-grid">
-
         <article class="project-card">
           <div class="project-num">01 / MARKETPLACE</div>
           <h3>Innovation Marketplace</h3>
@@ -493,29 +544,64 @@
             <span class="tag warm">Flask</span>
             <span class="tag warm">SQLite</span>
           </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-num">02 / CLI TOOL</div>
-          <h3>Maji Mazuri App</h3>
-          <p>A CLI-based cocktail bar management app that helps owners track cocktails, customers, and orders through a clean terminal interface backed by a Flask REST API.</p>
-          <div class="tag-row">
-            <span class="tag warm">Python</span>
-            <span class="tag warm">Flask</span>
-            <span class="tag warm">SQLAlchemy</span>
-            <span class="tag warm">SQLite</span>
-            <span class="tag warm">JWT</span>
+	  <div class="project-links">
+            <a href="https://innovation-marketplace.vercel.app/"
+              target="_blank" rel="noopener noreferrer">Live site ↗</a>
           </div>
         </article>
 
         <article class="project-card">
-          <div class="project-num">03 / TRAVEL</div>
-          <h3>KimoshTours</h3>
-          <p>A tours and travel website for a Kenyan company, showcasing destinations, packages, and experiences to help travelers plan their next trip.</p>
+          <div class="project-num">02 / LOGISTICS</div>
+          <h3>MCM-CARGO</h3>
+          <p>A logistics platform covering customs clearance, sea, air and land freight forwarding, and warehousing services.</p>
+          <div class="tag-row">
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag warm">Django</span>
+            <span class="tag warm">Clerk</span>
+            <span class="tag warm">Docker</span>
+          </div>
+          <div class="project-links">
+            <a href="https://mcm-amber.vercel.app/"
+              target="_blank" rel="noopener noreferrer">Live site ↗</a>
+            <a href="https://github.com/Elizabeth-NN/mcm"
+              target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-num">03 / DIGITAL SERVICES</div>
+          <h3>AlexCyberServices</h3>
+          <p>A digital-services platform for service requests, document handling, and customer workflows.</p>
           <div class="tag-row">
             <span class="tag">Next.js</span>
             <span class="tag">React</span>
-            <span class="tag">Tailwind</span>
+            <span class="tag warm">FastAPI</span>
+            <span class="tag warm">Supabase</span>
+            <span class="tag warm">Clerk</span>
+          </div>
+          <div class="project-links">
+            <a href="https://alex-cyber-services.vercel.app"
+              target="_blank" rel="noopener noreferrer">Live site ↗</a>
+            <a href="https://github.com/Elizabeth-NN/cafe"
+              target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-num">04 / AI &amp; RAG</div>
+          <h3>Customer Support Agent</h3>
+          <p>An AI support assistant that retrieves answers from business knowledge, cites relevant sources, and supports escalation when it cannot answer confidently. Order lookup and ticket creation are planned capabilities.</p>
+          <div class="tag-row">
+            <span class="tag">Next.js</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag warm">RAG</span>
+            <span class="tag warm">PostgreSQL</span>
+            <span class="tag warm">pgvector</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Elizabeth-NN/customer-support-agent"
+              target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           </div>
         </article>
 
@@ -536,10 +622,18 @@
         <span class="skill-chip">typescript</span>
         <span class="skill-chip">node</span>
         <span class="skill-chip">python</span>
-        <span class="skill-chip">postgresql</span>
         <span class="skill-chip">flask</span>
+        <span class="skill-chip">fastapi</span>
+        <span class="skill-chip">django</span>
+        <span class="skill-chip">postgresql</span>
+        <span class="skill-chip">sqlite</span>
         <span class="skill-chip">firebase</span>
+        <span class="skill-chip">supabase</span>
         <span class="skill-chip">tailwind-css</span>
+        <span class="skill-chip">docker</span>
+        <span class="skill-chip">git-github</span>
+        <span class="skill-chip">AI &amp; RAG</span>
+        <span class="skill-chip">workflow-automation</span>
       </div>
     </div>
   </section>
@@ -553,6 +647,7 @@
         <p>I'm currently open to new opportunities, freelance projects, and interesting collaborations. Send me a message and let's build something great together.</p>
         <div class="contact-actions">
           <a href="mailto:elizabethnjuguna217@gmail.com" class="btn btn-primary">elizabethnjuguna217@gmail.com</a>
+          <a href="https://wa.me/254715099503" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Chat on WhatsApp ↗</a>
           <a href="https://www.linkedin.com/in/elizabeth-njuguna-432951371/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
         </div>
       </div>
@@ -562,7 +657,7 @@
 
 <footer>
   <div class="wrap">
-    <div class="footer-note">© 2026 Elizabeth Njuguna. Built with React, Tailwind, and passion.</div>
+    <div class="footer-note">© 2026 Elizabeth Njuguna. Built with HTML, CSS, and passion.</div>
     <div class="footer-links">
       <a href="https://github.com/Elizabeth-NN" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/elizabeth-njuguna-432951371/" target="_blank" rel="noopener">LinkedIn</a>
@@ -570,6 +665,43 @@
     </div>
   </div>
 </footer>
+
+
+<script>
+  (() => {
+    const button = document.querySelector(".menu-toggle");
+    const navigation = document.querySelector("#primary-navigation");
+    if (!button || !navigation) return;
+
+    function setOpen(open) {
+      navigation.classList.toggle("is-open", open);
+      button.setAttribute("aria-expanded", String(open));
+      button.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+      button.innerHTML = open
+        ? 'Close <span aria-hidden="true">×</span>'
+        : 'Menu <span aria-hidden="true">☰</span>';
+    }
+
+    button.addEventListener("click", () => {
+      setOpen(button.getAttribute("aria-expanded") !== "true");
+    });
+
+    navigation.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        button.focus();
+      }
+    });
+
+    window.matchMedia("(min-width: 861px)").addEventListener("change", () => {
+      setOpen(false);
+    });
+  })();
+</script>
 
 </body>
 </html>
