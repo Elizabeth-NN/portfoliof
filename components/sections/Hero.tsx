@@ -24,21 +24,6 @@ export default function Hero() {
           <a href="#projects" className="btn btn-primary">
             View my work
           </a>
-          <a
-            href="/Elizabeth_Njuguna_Resume.pdf"
-            className="btn btn-ghost"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View resume ↗
-          </a>
-          <a
-            href="/Elizabeth_Njuguna_Resume.pdf"
-            className="btn btn-ghost"
-            download="Elizabeth_Njuguna_Resume.pdf"
-          >
-            Download resume ↓
-          </a>
           <a href="#contact" className="btn btn-ghost">
             Get in touch
           </a>

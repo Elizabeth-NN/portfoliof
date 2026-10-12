@@ -26,7 +26,20 @@ export default function Contact() {
               elizabethnjuguna217@gmail.com
             </a>
 
-            <a href="/Elizabeth_Njuguna_Resume.pdf" className="btn btn-ghost" download>
+                        <a
+              href="/Elizabeth_Njuguna_Resume.pdf"
+              className="btn btn-ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View resume ↗
+            </a>
+
+            <a
+              href="/Elizabeth_Njuguna_Resume.pdf"
+              className="btn btn-ghost"
+              download="Elizabeth_Njuguna_Resume.pdf"
+            >
               Download resume ↓
             </a>
 

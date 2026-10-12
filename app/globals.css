@@ -162,3 +162,58 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 .preview .status {
   z-index: 2;
 }
+
+/* RESPONSIVE NAVBAR SPACING */
+.nav-links {
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 24px);
+}
+
+.nav-resume-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.nav-links .nav-resume {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 9px 12px;
+  line-height: 1.2;
+}
+
+.nav-links .m-only {
+  display: none;
+}
+
+/* MOBILE NAVIGATION */
+@media (max-width: 860px) {
+  .nav-links {
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .nav-links .nav-resume-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-links .nav-resume {
+    display: inline-flex;
+    width: auto;
+    margin: 0;
+    padding: 10px 12px;
+  }
+
+  .nav-links a:not(.nav-resume) {
+    padding: 12px 0;
+  }
+}

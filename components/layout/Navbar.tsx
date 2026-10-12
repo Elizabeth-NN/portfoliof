@@ -10,6 +10,8 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
+const resumePath = "/Elizabeth_Njuguna_Resume.pdf";
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -53,14 +55,26 @@ export default function Navbar() {
             </a>
           ))}
 
-          <a
-            href="/Elizabeth_Njuguna_Resume.pdf"
-            className="m-only"
-            download
-            onClick={() => setMenuOpen(false)}
-          >
-            Download resume
-          </a>
+          <div className="nav-resume-actions">
+            <a
+              className="nav-resume"
+              href={resumePath}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+            >
+              View Resume ↗
+            </a>
+
+            <a
+              className="nav-resume nav-resume-download"
+              href={resumePath}
+              download="Elizabeth_Njuguna_Resume.pdf"
+              onClick={() => setMenuOpen(false)}
+            >
+              Download ↓
+            </a>
+          </div>
         </div>
 
         <button
@@ -74,10 +88,6 @@ export default function Navbar() {
           {menuOpen ? "Close" : "Menu"}{" "}
           <span aria-hidden="true">{menuOpen ? "×" : "☰"}</span>
         </button>
-
-        <a className="nav-resume" href="/Elizabeth_Njuguna_Resume.pdf" download>
-          Resume ↓
-        </a>
       </nav>
     </header>
   );
