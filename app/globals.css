@@ -140,3 +140,25 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
   .contact-box{padding:36px 24px}
   section{padding:64px 0}
 }
+
+/* TOOLS */
+#tools {
+  background: rgba(18, 27, 46, 0.25);
+}
+
+/* PROJECT PREVIEW IMAGES */
+.preview img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Keep project labels readable above preview imagery */
+.preview .dots,
+.preview .initials,
+.preview .status {
+  z-index: 2;
+}
